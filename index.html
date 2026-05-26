@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚡ ADRIÁN FUENTES VILLANUEVA ⚡ | BIO-NEXUS 67</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --cyan: #00f5ff;
+  --cyan2: #00d4e8;
+  --green: #39ff14;
+  --green2: #00ff88;
+  --violet: #bf00ff;
+  --violet2: #7b00cc;
+  --pink: #ff007a;
+  --pink2: #ff4da6;
+  --yellow: #ffe600;
+  --dark: #030309;
+  --dark2: #07071a;
+  --dark3: #0a0a1f;
+  --panel: rgba(0,245,255,0.04);
+  --border-c: rgba(0,245,255,0.25);
+  --border-g: rgba(57,255,20,0.25);
+  --border-v: rgba(191,0,255,0.25);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body {
+  background: var(--dark);
+  color: #c8e8f0;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 17px;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+/* ── SCANLINES overlay ── */
+body::after {
+  content:'';
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+  pointer-events:none;
+  z-index:9999;
+}
+
+/* ── GRID BG ── */
+#grid-bg {
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background-image:
+    linear-gradient(rgba(0,245,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events:none;
+  z-index:0;
+}
+
+canvas#particles {
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:1;
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed;top:0;left:0;right:0;
+  background: rgba(3,3,9,0.9);
+  border-bottom: 1px solid var(--cyan);
+  backdrop-filter: blur(10px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.6rem 2rem;
+  z-index:1000;
+  box-shadow: 0 0 20px rgba(0,245,255,0.2);
+}
+.nav-logo {
+  font-family:'Orbitron',monospace;
+  font-size:0.85rem;
+  color:var(--cyan);
+  letter-spacing:3px;
+  text-shadow: 0 0 10px var(--cyan);
+}
+.nav-links {display:flex;gap:1.5rem;}
+.nav-links a {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.78rem;
+  color:var(--green);
+  text-decoration:none;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:all 0.2s;
+  padding:0.3rem 0.6rem;
+  border:1px solid transparent;
+}
+.nav-links a:hover {
+  color:var(--cyan);
+  border-color:var(--cyan);
+  text-shadow:0 0 8px var(--cyan);
+  box-shadow:0 0 10px rgba(0,245,255,0.3);
+}
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:6rem 2rem 3rem;
+  position:relative;z-index:2;
+}
+
+.bio-nexus-badge {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.8rem;
+  color:var(--violet);
+  letter-spacing:5px;
+  text-transform:uppercase;
+  border:1px solid var(--violet);
+  padding:0.35rem 1.5rem;
+  margin-bottom:1.5rem;
+  display:inline-block;
+  animation:flicker 4s infinite;
+  text-shadow:0 0 10px var(--violet);
+  box-shadow:0 0 15px rgba(191,0,255,0.2), inset 0 0 15px rgba(191,0,255,0.05);
+}
+
+@keyframes flicker {
+  0%,95%,100%{opacity:1;}
+  96%{opacity:0.3;}
+  97%{opacity:1;}
+  98%{opacity:0.2;}
+  99%{opacity:1;}
+}
+
+.glitch-name {
+  font-family:'Orbitron',monospace;
+  font-size:clamp(2rem,6vw,4.2rem);
+  font-weight:900;
+  color:var(--cyan);
+  text-shadow: 0 0 20px var(--cyan), 0 0 40px rgba(0,245,255,0.4);
+  letter-spacing:3px;
+  line-height:1.15;
+  position:relative;
+  animation:glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%,100%{text-shadow:0 0 20px var(--cyan),0 0 40px rgba(0,245,255,0.4);}
+  50%{text-shadow:0 0 30px var(--cyan),0 0 60px rgba(0,245,255,0.7),0 0 100px rgba(0,245,255,0.3);}
+}
+
+.glitch-name::before,.glitch-name::after {
+  content:attr(data-text);
+  position:absolute;top:0;left:0;width:100%;
+  font-family:'Orbitron',monospace;
+}
+.glitch-name::before {
+  color:var(--pink);
+  animation:glitch1 3s infinite;
+  clip-path:polygon(0 0,100% 0,100% 35%,0 35%);
+}
+.glitch-name::after {
+  color:var(--green);
+  animation:glitch2 3s infinite;
+  clip-path:polygon(0 65%,100% 65%,100% 100%,0 100%);
+}
+
+@keyframes glitch1 {
+  0%,90%,100%{transform:translate(0);}
+  92%{transform:translate(-4px,2px);}
+  94%{transform:translate(4px,-1px);}
+  96%{transform:translate(-2px,0);}
+}
+@keyframes glitch2 {
+  0%,90%,100%{transform:translate(0);}
+  91%{transform:translate(3px,-2px);}
+  93%{transform:translate(-3px,1px);}
+  95%{transform:translate(2px,0);}
+}
+
+.hero-role {
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(1rem,2.2vw,1.3rem);
+  color:var(--green);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin:1rem 0 0.5rem;
+  text-shadow:0 0 10px var(--green);
+}
+
+.hero-email {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.95rem;
+  color:rgba(0,245,255,0.6);
+  margin-bottom:1.5rem;
+}
+
+.emoji-strip {
+  font-size:1.8rem;
+  letter-spacing:8px;
+  margin:1rem 0;
+  filter:drop-shadow(0 0 8px var(--cyan));
+}
+
+.cta-phone {
+  display:inline-flex;align-items:center;gap:0.8rem;
+  background:transparent;
+  border:2px solid var(--cyan);
+  color:var(--cyan);
+  font-family:'Orbitron',monospace;
+  font-size:1.3rem;
+  font-weight:700;
+  padding:0.9rem 2.5rem;
+  text-decoration:none;
+  letter-spacing:2px;
+  position:relative;
+  overflow:hidden;
+  transition:all 0.3s;
+  margin:1rem 0;
+  text-shadow:0 0 10px var(--cyan);
+  box-shadow:0 0 20px rgba(0,245,255,0.3), inset 0 0 20px rgba(0,245,255,0.05);
+}
+.cta-phone::before {
+  content:'';
+  position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(0,245,255,0.2),transparent);
+  transition:left 0.4s;
+}
+.cta-phone:hover::before{left:100%;}
+.cta-phone:hover {
+  background:rgba(0,245,255,0.1);
+  box-shadow:0 0 40px rgba(0,245,255,0.6),inset 0 0 20px rgba(0,245,255,0.1);
+}
+
+.corner-deco {
+  position:absolute;
+  width:20px;height:20px;
+  border-color:var(--cyan);
+  border-style:solid;
+  opacity:0.7;
+}
+.corner-deco.tl{top:0;left:0;border-width:2px 0 0 2px;}
+.corner-deco.tr{top:0;right:0;border-width:2px 2px 0 0;}
+.corner-deco.bl{bottom:0;left:0;border-width:0 0 2px 2px;}
+.corner-deco.br{bottom:0;right:0;border-width:0 2px 2px 0;}
+
+/* ── SECTION WRAPPER ── */
+.section {
+  position:relative;z-index:2;
+  max-width:1100px;margin:0 auto;
+  padding:4rem 1.5rem;
+}
+
+.sec-header {
+  display:flex;align-items:center;gap:1rem;
+  margin-bottom:2.5rem;
+}
+.sec-line {
+  flex:1;height:1px;
+  background:linear-gradient(90deg,var(--cyan),var(--green),transparent);
+}
+.sec-title {
+  font-family:'Orbitron',monospace;
+  font-size:clamp(1rem,2.5vw,1.4rem);
+  font-weight:700;
+  color:var(--cyan);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  text-shadow:0 0 15px var(--cyan);
+  white-space:nowrap;
+}
+.sec-line2 {
+  flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,var(--green),var(--cyan));
+}
+
+/* ── PANEL ── */
+.panel {
+  background:var(--panel);
+  border:1px solid var(--border-c);
+  padding:1.8rem 2rem;
+  position:relative;
+  margin-bottom:1.5rem;
+  transition:all 0.3s;
+}
+.panel::before,.panel::after {
+  content:'';position:absolute;
+  width:12px;height:12px;
+  border-color:var(--cyan);border-style:solid;
+}
+.panel::before{top:-1px;left:-1px;border-width:2px 0 0 2px;}
+.panel::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
+.panel:hover{border-color:var(--cyan);box-shadow:0 0 25px rgba(0,245,255,0.15);}
+
+.panel.violet { border-color:var(--border-v); }
+.panel.violet::before,.panel.violet::after{border-color:var(--violet);}
+.panel.violet:hover{border-color:var(--violet);box-shadow:0 0 25px rgba(191,0,255,0.15);}
+
+.panel.green { border-color:var(--border-g); }
+.panel.green::before,.panel.green::after{border-color:var(--green);}
+.panel.green:hover{border-color:var(--green);box-shadow:0 0 25px rgba(57,255,20,0.15);}
+
+/* ── STATS ── */
+.stats-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:1rem;
+  margin-bottom:2rem;
+}
+.stat-box {
+  background:rgba(0,245,255,0.03);
+  border:1px solid var(--border-c);
+  padding:1.4rem 1rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  transition:all 0.3s;
+}
+.stat-box:hover{
+  border-color:var(--cyan);
+  box-shadow:0 0 20px rgba(0,245,255,0.2);
+  transform:translateY(-4px);
+}
+.stat-box::after {
+  content:'';
+  position:absolute;bottom:0;left:0;
+  height:2px;width:0;
+  background:linear-gradient(90deg,var(--cyan),var(--green));
+  transition:width 0.4s;
+}
+.stat-box:hover::after{width:100%;}
+.stat-emoji{font-size:2rem;display:block;margin-bottom:0.5rem;filter:drop-shadow(0 0 6px var(--cyan));}
+.stat-num{
+  font-family:'Orbitron',monospace;
+  font-size:1.9rem;font-weight:900;
+  color:var(--cyan);
+  text-shadow:0 0 15px var(--cyan);
+  display:block;
+}
+.stat-label{font-size:0.78rem;color:rgba(0,245,255,0.5);letter-spacing:2px;text-transform:uppercase;margin-top:0.3rem;font-family:'Share Tech Mono',monospace;}
+
+/* ── SKILL BARS ── */
+.skill-item { margin-bottom:1.2rem; }
+.skill-header{display:flex;justify-content:space-between;margin-bottom:0.4rem;}
+.skill-name{font-family:'Share Tech Mono',monospace;font-size:0.9rem;color:var(--green);letter-spacing:1px;}
+.skill-pct{font-family:'Orbitron',monospace;font-size:0.8rem;color:var(--cyan);}
+.skill-track{height:6px;background:rgba(255,255,255,0.05);position:relative;overflow:hidden;}
+.skill-fill{
+  height:100%;width:0;
+  background:linear-gradient(90deg,var(--violet),var(--cyan),var(--green));
+  box-shadow:0 0 10px var(--cyan);
+  transition:width 1.2s cubic-bezier(0.4,0,0.2,1);
+  position:relative;
+}
+.skill-fill::after{
+  content:'';
+  position:absolute;right:0;top:0;bottom:0;width:4px;
+  background:white;
+  box-shadow:0 0 8px white;
+  animation:blink-dot 1s infinite;
+}
+@keyframes blink-dot{0%,100%{opacity:1;}50%{opacity:0;}}
+
+/* ── TIMELINE ── */
+.tl {position:relative;}
+.tl::before{
+  content:'';position:absolute;
+  left:50%;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,transparent,var(--cyan),var(--green),var(--violet),transparent);
+  transform:translateX(-50%);
+}
+@media(max-width:650px){
+  .tl::before{left:14px;}
+  .tl-row{flex-direction:column!important;padding-left:40px!important;}
+  .tl-dot{left:14px!important;transform:translateX(-50%)!important;}
+  .tl-card{width:100%!important;margin:0!important;}
+  .tl-row:nth-child(even){flex-direction:column!important;}
+}
+.tl-row{display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:2rem;position:relative;}
+.tl-row:nth-child(even){flex-direction:row-reverse;}
+.tl-dot{
+  position:absolute;left:50%;top:0.6rem;
+  width:14px;height:14px;
+  background:var(--cyan);
+  box-shadow:0 0 15px var(--cyan),0 0 30px rgba(0,245,255,0.5);
+  transform:translateX(-50%);
+  z-index:2;
+  animation:dot-pulse 2s ease-in-out infinite;
+}
+@keyframes dot-pulse{0%,100%{box-shadow:0 0 8px var(--cyan);}50%{box-shadow:0 0 20px var(--cyan),0 0 40px rgba(0,245,255,0.6);}}
+.tl-card{
+  width:44%;
+  background:rgba(0,245,255,0.03);
+  border:1px solid var(--border-c);
+  padding:1.2rem 1.4rem;
+  position:relative;
+  transition:all 0.3s;
+}
+.tl-card:hover{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,245,255,0.15);}
+.tl-row:nth-child(even) .tl-card{border-color:var(--border-v);}
+.tl-row:nth-child(even) .tl-card:hover{border-color:var(--violet);box-shadow:0 0 20px rgba(191,0,255,0.15);}
+.tl-row:nth-child(odd) .tl-card{margin-right:auto;}
+.tl-row:nth-child(even) .tl-card{margin-left:auto;}
+.tl-emoji{font-size:1.6rem;margin-bottom:0.4rem;display:block;}
+.tl-year{
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.75rem;color:var(--pink);
+  letter-spacing:2px;text-transform:uppercase;
+  text-shadow:0 0 8px var(--pink);
+}
+.tl-role{
+  font-family:'Orbitron',monospace;
+  font-size:0.88rem;font-weight:700;
+  color:var(--cyan);
+  margin:0.35rem 0 0.4rem;
+  text-shadow:0 0 8px rgba(0,245,255,0.5);
+}
+.tl-company{font-size:0.85rem;color:var(--green);font-weight:600;margin-bottom:0.3rem;text-shadow:0 0 6px rgba(57,255,20,0.4);}
+.tl-desc{font-size:0.87rem;color:rgba(200,232,240,0.65);line-height:1.6;}
+
+/* ── SERVICE CARDS ── */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.2rem;}
+.svc-card{
+  background:rgba(0,0,0,0.4);
+  border:1px solid var(--border-g);
+  padding:1.8rem 1.4rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  transition:all 0.3s;
+}
+.svc-card::before{
+  content:'';
+  position:absolute;top:-100%;left:-100%;
+  width:300%;height:300%;
+  background:conic-gradient(from 0deg,transparent 0deg,rgba(57,255,20,0.03) 60deg,transparent 120deg);
+  animation:rotate-bg 8s linear infinite;
+}
+@keyframes rotate-bg{to{transform:rotate(360deg);}}
+.svc-card:hover{border-color:var(--green);box-shadow:0 0 30px rgba(57,255,20,0.2);transform:translateY(-6px);}
+.svc-emoji{font-size:2.8rem;display:block;margin-bottom:0.8rem;filter:drop-shadow(0 0 8px var(--green));}
+.svc-title{
+  font-family:'Orbitron',monospace;
+  font-size:0.9rem;font-weight:700;
+  color:var(--green);
+  text-shadow:0 0 10px var(--green);
+  margin-bottom:0.7rem;
+  letter-spacing:1px;
+}
+.svc-desc{font-size:0.88rem;color:rgba(200,232,240,0.6);line-height:1.65;}
+
+/* ── TECH TAGS ── */
+.tech-cloud{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1rem;}
+.tag{
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.8rem;
+  padding:0.3rem 0.8rem;
+  border:1px solid;
+  letter-spacing:1px;
+  transition:all 0.2s;
+  cursor:default;
+}
+.tag.c{color:var(--cyan);border-color:rgba(0,245,255,0.4);}
+.tag.g{color:var(--green);border-color:rgba(57,255,20,0.4);}
+.tag.v{color:var(--violet);border-color:rgba(191,0,255,0.4);}
+.tag.p{color:var(--pink);border-color:rgba(255,0,122,0.4);}
+.tag:hover{box-shadow:0 0 12px currentColor;background:rgba(255,255,255,0.05);}
+
+/* ── CV SECTION ── */
+.cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+@media(max-width:650px){.cv-grid{grid-template-columns:1fr;}}
+.cv-entry{margin-bottom:1.2rem;}
+.cv-company{
+  font-family:'Orbitron',monospace;font-size:0.85rem;font-weight:700;
+  color:var(--cyan);text-shadow:0 0 8px rgba(0,245,255,0.4);
+}
+.cv-role{font-size:0.9rem;color:var(--green);font-weight:600;margin:0.2rem 0;}
+.cv-period{font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:var(--pink);letter-spacing:2px;margin-bottom:0.5rem;}
+.cv-bullets{list-style:none;padding:0;}
+.cv-bullets li{font-size:0.87rem;color:rgba(200,232,240,0.65);line-height:1.6;padding-left:1rem;position:relative;margin-bottom:0.2rem;}
+.cv-bullets li::before{content:'▸';position:absolute;left:0;color:var(--green);font-size:0.75rem;}
+
+/* ── COVERAGE ── */
+.cov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.8rem;}
+.cov-item{
+  display:flex;align-items:center;gap:1rem;
+  background:rgba(191,0,255,0.04);
+  border:1px solid var(--border-v);
+  padding:1rem 1.2rem;
+  transition:all 0.3s;
+}
+.cov-item:hover{border-color:var(--violet);box-shadow:0 0 15px rgba(191,0,255,0.2);}
+.cov-num{
+  font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;
+  color:var(--violet);text-shadow:0 0 10px var(--violet);
+}
+.cov-name{font-size:1rem;font-weight:700;color:#c8e8f0;}
+.cov-sub{font-size:0.78rem;color:rgba(200,232,240,0.45);font-family:'Share Tech Mono',monospace;letter-spacing:1px;}
+
+/* ── FLOATING WINDOWS ── */
+.float-win {
+  position:fixed;
+  background:rgba(3,3,9,0.92);
+  border:1px solid var(--cyan);
+  box-shadow:0 0 30px rgba(0,245,255,0.3),inset 0 0 20px rgba(0,245,255,0.03);
+  z-index:500;
+  min-width:220px;
+  backdrop-filter:blur(10px);
+  display:none;
+  animation:win-appear 0.3s ease;
+  resize:both;overflow:auto;
+}
+@keyframes win-appear{from{opacity:0;transform:scale(0.8);}to{opacity:1;transform:scale(1);}}
+.float-win.active{display:block;}
+.win-bar {
+  background:linear-gradient(90deg,rgba(0,245,255,0.15),rgba(57,255,20,0.1));
+  border-bottom:1px solid var(--cyan);
+  padding:0.5rem 0.8rem;
+  display:flex;justify-content:space-between;align-items:center;
+  cursor:move;
+  user-select:none;
+}
+.win-title{font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;}
+.win-btns{display:flex;gap:0.4rem;}
+.win-btn{
+  width:12px;height:12px;border-radius:50%;border:none;cursor:pointer;
+  transition:all 0.2s;font-size:0;
+}
+.win-btn.close{background:var(--pink);}
+.win-btn.min{background:var(--yellow);}
+.win-btn.max{background:var(--green);}
+.win-btn:hover{filter:brightness(1.3);box-shadow:0 0 6px currentColor;}
+.win-body{padding:1rem 1.2rem;}
+
+/* ── TASKBAR ── */
+.taskbar {
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(3,3,9,0.95);
+  border-top:1px solid var(--cyan);
+  box-shadow:0 0 20px rgba(0,245,255,0.2);
+  display:flex;align-items:center;gap:0.5rem;
+  padding:0.4rem 1rem;
+  z-index:800;
+  backdrop-filter:blur(10px);
+  flex-wrap:wrap;
+}
+.tb-btn{
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.72rem;
+  color:rgba(0,245,255,0.7);
+  background:rgba(0,245,255,0.05);
+  border:1px solid rgba(0,245,255,0.25);
+  padding:0.3rem 0.8rem;
+  cursor:pointer;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  transition:all 0.2s;
+  white-space:nowrap;
+}
+.tb-btn:hover,.tb-btn.open{
+  color:var(--cyan);
+  background:rgba(0,245,255,0.12);
+  border-color:var(--cyan);
+  box-shadow:0 0 10px rgba(0,245,255,0.3);
+}
+.tb-clock{
+  margin-left:auto;
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.78rem;
+  color:var(--green);
+  text-shadow:0 0 8px var(--green);
+  letter-spacing:2px;
+}
+.tb-label{
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.7rem;
+  color:rgba(200,232,240,0.3);
+  letter-spacing:2px;
+  padding-right:0.5rem;
+  border-right:1px solid rgba(0,245,255,0.2);
+}
+
+/* ── CTA ── */
+.cta-section{
+  position:relative;z-index:2;
+  text-align:center;
+  padding:5rem 1.5rem 7rem;
+  background:radial-gradient(ellipse at center,rgba(0,245,255,0.04) 0%,transparent 70%);
+  border-top:1px solid var(--border-c);
+}
+.cta-title{
+  font-family:'Orbitron',monospace;
+  font-size:clamp(1.5rem,4vw,2.8rem);
+  font-weight:900;
+  color:var(--cyan);
+  text-shadow:0 0 30px var(--cyan),0 0 60px rgba(0,245,255,0.4);
+  animation:glow-pulse 3s ease-in-out infinite;
+  margin-bottom:0.8rem;
+}
+.cta-sub{font-size:1.05rem;color:var(--green);letter-spacing:2px;margin-bottom:2rem;text-shadow:0 0 8px var(--green);}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s,transform 0.7s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ── PROGRESS BAR TOP ── */
+#progress-bar{
+  position:fixed;top:0;left:0;height:2px;width:0%;
+  background:linear-gradient(90deg,var(--violet),var(--cyan),var(--green),var(--pink));
+  z-index:9998;
+  transition:width 0.1s;
+  box-shadow:0 0 8px var(--cyan);
+}
+
+/* ── TYPING CURSOR ── */
+.typing::after{
+  content:'_';
+  animation:blink 1s infinite;
+  color:var(--cyan);
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+.divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),var(--green),var(--violet),transparent);
+  opacity:0.3;
+  margin:0;
+}
+
+/* window for skills specifically */
+#win-skills { top:100px;right:20px;width:300px; }
+#win-contact { top:160px;left:20px;width:280px; }
+#win-status { top:220px;left:20px;width:260px; }
+#win-tools { bottom:60px;right:20px;width:300px; }
+
+/* PULSE DOT */
+.pulse-dot{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--green);margin-right:8px;
+  box-shadow:0 0 10px var(--green);
+  animation:dot-pulse 1.5s ease-in-out infinite;
+}
+
+.accent-bar{
+  height:3px;width:100%;margin:0.5rem 0;
+  background:linear-gradient(90deg,var(--cyan),var(--green),var(--pink),var(--violet));
+  box-shadow:0 0 8px var(--cyan);
+  animation:bar-shift 4s linear infinite;
+  background-size:200% 100%;
+}
+@keyframes bar-shift{0%{background-position:0%;}100%{background-position:200%;}}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div id="grid-bg"></div>
+<canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">⚡ BIO-NEXUS 67 ⚡</div>
+  <div class="nav-links">
+    <a href="#perfil">PERFIL</a>
+    <a href="#experiencia">EXP</a>
+    <a href="#servicios">SVC</a>
+    <a href="#skills">SKILLS</a>
+    <a href="#contacto">CONTACT</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="bio-nexus-badge">◈ BIO-NEXUS 67 // OPERADOR ACTIVO ◈</div>
+  <h1 class="glitch-name" data-text="ADRIÁN FUENTES VILLANUEVA">ADRIÁN FUENTES VILLANUEVA</h1>
+  <div class="hero-role typing">Especialista · Telecomunicaciones · Ventas · Desarrollo · Diseño</div>
+  <div class="hero-email">⟨ demitry001@gmail.com ⟩</div>
+  <div class="emoji-strip">⚡ 💻 📡 🔧 🎯 🌐 🛡️ 🚀</div>
+  <a href="tel:5527238980" class="cta-phone">
+    <div class="corner-deco tl"></div>
+    <div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div>
+    <div class="corner-deco br"></div>
+    📞 55 2723 8980
+  </a>
+  <div style="font-family:'Share Tech Mono',monospace;font-size:0.82rem;color:rgba(0,245,255,0.4);margin-top:1rem;letter-spacing:3px;">
+    ▸ SALINA CRUZ, OAXACA // ISTMO GRID ▸
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STATS -->
+<section class="section reveal" id="perfil">
+  <div class="sec-header">
+    <div class="sec-line"></div>
+    <div class="sec-title">▸ DATOS DEL OPERADOR</div>
+    <div class="sec-line2"></div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-box"><span class="stat-emoji">⚡</span><span class="stat-num">+10</span><span class="stat-label">Años Activo</span></div>
+    <div class="stat-box"><span class="stat-emoji">🏭</span><span class="stat-num">5+</span><span class="stat-label">Sectores</span></div>
+    <div class="stat-box"><span class="stat-emoji">📡</span><span class="stat-num">0%</span><span class="stat-label">Tasa Garantía</span></div>
+    <div class="stat-box"><span class="stat-emoji">🌐</span><span class="stat-num">4</span><span class="stat-label">Zonas Istmo</span></div>
+    <div class="stat-box"><span class="stat-emoji">🛡️</span><span class="stat-num">100%</span><span class="stat-label">Compromiso</span></div>
+  </div>
+  <div class="panel">
+    <div class="accent-bar"></div>
+    <p style="line-height:1.8;color:rgba(200,232,240,0.75);">
+      <span style="color:var(--cyan);font-weight:700;">▸ PERFIL_SISTEMA:</span> Técnico especialista con amplia trayectoria en instalación de fibra óptica, mantenimiento preventivo/correctivo de hardware y gestión operativa. Experto en optimización de inventarios y reducción de garantías mediante instalaciones de alta precisión. También especialista en ventas directas, marketing digital y desarrollo web. 💡 Proactivo, con gran capacidad de resolución de problemas técnicos y atención al cliente. 🤝
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCIA / TIMELINE -->
+<section class="section reveal" id="experiencia">
+  <div class="sec-header">
+    <div class="sec-line"></div>
+    <div class="sec-title">▸ LOG DE EXPERIENCIA</div>
+    <div class="sec-line2"></div>
+  </div>
+  <div class="tl">
+
+    <div class="tl-row">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">⚙️</span>
+        <span class="tl-year">▸ 2025 – 2026 // ACTIVO</span>
+        <div class="tl-company">Industrial Eléctrica Istmeña S.A. de C.V.</div>
+        <div class="tl-role">Jefe de Monitoreo y Mantenimiento</div>
+        <div class="tl-desc">Liderazgo del área técnica, solucionando incidencias críticas en sucursales. Agilización de procesos operativos logrando mayor eficiencia en el flujo de trabajo. ⚡</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">📡</span>
+        <span class="tl-year">▸ 2024 – 2025</span>
+        <div class="tl-company">Megacable / Grupo Carso KB-TEL</div>
+        <div class="tl-role">Técnico Instalador de Fibra Óptica</div>
+        <div class="tl-desc">Instalaciones de fibra óptica y cobre con <strong style="color:var(--green)">0% de tasa de caída en garantía</strong>. Optimización de inventario y cumplimiento de metas diarias. 🔧</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">🗳️</span>
+        <span class="tl-year">▸ ABR – JUL 2024</span>
+        <div class="tl-company">IEPCO</div>
+        <div class="tl-role">Capacitador Electoral</div>
+        <div class="tl-desc">Gestión y capacitación de grupos de trabajo para procesos electorales en el Distrito 19 de Oaxaca. 🌎</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">🏪</span>
+        <span class="tl-year">▸ 2018 – 2024</span>
+        <div class="tl-company">Walmart CEDIS</div>
+        <div class="tl-role">Operador de Montacargas / Asociado</div>
+        <div class="tl-desc">Gestión logística y movimiento de mercancía en centros de distribución de alto volumen. Estándares de limpieza y seguridad industrial. 📦</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">📚</span>
+        <span class="tl-year">▸ VENTAS DIRECTAS</span>
+        <div class="tl-company">Editorial / Ventas de campo</div>
+        <div class="tl-role">Vendedor Independiente — Oaxaca</div>
+        <div class="tl-desc">Venta puerta a puerta de obras de García Márquez, enciclopedias y libros educativos en múltiples comunidades del estado. 🗺️</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">📺</span>
+        <span class="tl-year">▸ TELECOMUNICACIONES</span>
+        <div class="tl-company">DISH — Grupo Carso</div>
+        <div class="tl-role">Vendedor de Contratos</div>
+        <div class="tl-desc">Captación de suscriptores, cierre de contratos y fidelización de clientes en la zona del Istmo de Oaxaca. 📶</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">🖥️</span>
+        <span class="tl-year">▸ 2012 – 2014</span>
+        <div class="tl-company">Sec. de Derechos Humanos / Compu Store</div>
+        <div class="tl-role">Auxiliar Administrativo / Técnico PC</div>
+        <div class="tl-desc">Mantenimiento y reparación de laptops y PCs. Digitalización de documentos y soporte técnico administrativo. 🔩</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICIOS -->
+<section class="section reveal" id="servicios">
+  <div class="sec-header">
+    <div class="sec-line"></div>
+    <div class="sec-title">▸ MÓDULOS DISPONIBLES</div>
+    <div class="sec-line2"></div>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <span class="svc-emoji">🤝</span>
+      <div class="svc-title">VENTAS DIRECTAS</div>
+      <div class="svc-desc">Estrategias B2C y venta puerta a puerta. Alto índice de cierre con seguimiento posventa. ¡Resultados desde el día 1! 💪</div>
+    </div>
+    <div class="svc-card">
+      <span class="svc-emoji">📲</span>
+      <div class="svc-title">MARKETING DIGITAL</div>
+      <div class="svc-desc">Gestión de redes sociales, Mercado Libre y campañas para negocios en todo el Istmo de Oaxaca. 🚀</div>
+    </div>
+    <div class="svc-card">
+      <span class="svc-emoji">💻</span>
+      <div class="svc-title">DESARROLLO WEB</div>
+      <div class="svc-desc">Sitios HTML, puntos de venta, videojuegos y apps para cualquier sistema operativo. 🖥️</div>
+    </div>
+    <div class="svc-card">
+      <span class="svc-emoji">🎨</span>
+      <div class="svc-title">DISEÑO GRÁFICO</div>
+      <div class="svc-desc">Publicidad en lona, marcas de agua, imagen corporativa con Adobe PS, Illustrator, Premiere, CorelDraw. ✨</div>
+    </div>
+    <div class="svc-card">
+      <span class="svc-emoji">📡</span>
+      <div class="svc-title">FIBRA ÓPTICA</div>
+      <div class="svc-desc">Instalación y tendido de fibra óptica, coaxial, antenas satelitales y conectores con 0% garantías. 🔧</div>
+    </div>
+    <div class="svc-card">
+      <span class="svc-emoji">🔧</span>
+      <div class="svc-title">MANTENIMIENTO</div>
+      <div class="svc-desc">Reparación de multifuncionales (Kyocera, HP, Canon), PC, laptops, servidores y CCTV. ⚙️</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section class="section reveal" id="skills">
+  <div class="sec-header">
+    <div class="sec-line"></div>
+    <div class="sec-title">▸ ÁRBOL DE HABILIDADES</div>
+    <div class="sec-line2"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+    <div class="panel">
+      <div style="font-family:'Orbitron',monospace;font-size:0.8rem;color:var(--cyan);margin-bottom:1.2rem;letter-spacing:2px;">// TÉCNICAS</div>
+      <div class="skill-item"><div class="skill-header"><span class="skill-name">Fibra Óptica / Redes</span><span class="skill-pct">98%</span></div><div class="skill-track"><div class="skill-fill" data-pct="98"></div></div></div>
+      <div class="skill-item"><div class="skill-header"><span class="skill-name">Mantenimiento HW</span><span class="skill-pct">95%</span></div><div class="skill-track"><div class="skill-fill" data-pct="95"></div></div></div>
+      <div class="skill-item"><div class="skill-header"><span class="skill-name">HTML / Desarrollo Web</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" data-pct="90"></div></div></div>
+      <div class="skill-item"><div class="skill-header"><span class="skill-name">SQL / MySQL / SAP</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" data-pct="80"></div></div></div>
+      <div class="skill-item"><div class="skill-header"><span class="skill-name">AutoCAD / Linux</span><span class="skill-pct">75%</span></div><div class="skill-track"><div class="skill-fill" data-pct="75"></div></div></div>
+    </div>
+    <div class="panel violet">
+      <div style="font-family:'Orbitron',monospace;font-size:0.8rem;color:var(--violet);margin-bottom:1.2rem;letter-spacing:2px;">// COMERCIALES</div>
+      <div class="skill-item"><div class="skill-header"><span class="skill-name" style="color:var(--violet)">Ventas Directas</span><span class="skill-pct">99%</span></div><div class="skill-track"><div class="skill-fill" data-pct="99" style="background:linear-gradient(90deg,var(--pink),var(--violet),var(--cyan))"></div></div></div>
+      <div class="skill-item"><div class="skill-header"><span class="skill-name" style="color:var(--violet)">Marketing Digital</span><span class="skill-pct">92%</span></div><div class="skill-track"><div class="skill-fill" data-pct="92" style="background:linear-gradient(90deg,var(--pink),var(--violet),var(--cyan))"></div></div></div>
+      <div class="skill-item"><div class="skill-header"><span class="skill-name" style="color:var(--violet)">Diseño Gráfico</span><span class="skill-pct">88%</span></div><div class="skill-track"><div class="skill-fill" data-pct="88" style="background:linear-gradient(90deg,var(--pink),var(--violet),var(--cyan))"></div></div></div>
+      <div class="skill-item"><div class="skill-header"><span class="skill-name" style="color:var(--violet)">Liderazgo / Gestión</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" data-pct="90" style="background:linear-gradient(90deg,var(--pink),var(--violet),var(--cyan))"></div></div></div>
+      <div class="skill-item"><div class="skill-header"><span class="skill-name" style="color:var(--violet)">Logística / Inventario</span><span class="skill-pct">85%</span></div><div class="skill-track"><div class="skill-fill" data-pct="85" style="background:linear-gradient(90deg,var(--pink),var(--violet),var(--cyan))"></div></div></div>
+    </div>
+  </div>
+
+  <div class="panel green" style="margin-top:1.5rem;">
+    <div style="font-family:'Orbitron',monospace;font-size:0.8rem;color:var(--green);margin-bottom:1rem;letter-spacing:2px;">// STACK TECNOLÓGICO</div>
+    <div class="tech-cloud">
+      <span class="tag c">Windows</span><span class="tag c">Linux</span><span class="tag c">SQL Server</span><span class="tag c">MySQL</span><span class="tag c">SAP</span>
+      <span class="tag g">HTML/CSS</span><span class="tag g">AutoCAD</span><span class="tag g">Excel Avanzado</span><span class="tag g">MS Office</span>
+      <span class="tag v">Photoshop</span><span class="tag v">Illustrator</span><span class="tag v">Premiere</span><span class="tag v">CorelDraw</span>
+      <span class="tag p">Fibra Óptica</span><span class="tag p">CCTV</span><span class="tag p">Electrónica</span><span class="tag p">Mecatrónica</span><span class="tag p">Antenas</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FORMACION + COBERTURA -->
+<section class="section reveal">
+  <div class="sec-header">
+    <div class="sec-line"></div>
+    <div class="sec-title">▸ FORMACIÓN & COBERTURA</div>
+    <div class="sec-line2"></div>
+  </div>
+  <div class="cv-grid">
+    <div class="panel">
+      <div style="font-family:'Orbitron',monospace;font-size:0.8rem;color:var(--cyan);margin-bottom:1rem;letter-spacing:2px;">// EDUCACIÓN</div>
+      <div class="cv-entry">
+        <div class="cv-company">Grupo CEDVA</div>
+        <div class="cv-role">Bachillerato Técnico en Computación</div>
+        <div class="cv-period">▸ 2002 – 2005</div>
+      </div>
+      <div style="height:1px;background:var(--border-c);margin:1rem 0;"></div>
+      <div style="font-family:'Orbitron',monospace;font-size:0.8rem;color:var(--green);margin-bottom:0.8rem;letter-spacing:2px;">// CERTIFICACIONES</div>
+      <ul class="cv-bullets">
+        <li>Ensamblado de Computadoras 🖥️</li>
+        <li>Brigada Contra Incendios 🔥</li>
+        <li>Mantenimiento de Multifuncionales Kyocera, HP, Canon 🖨️</li>
+      </ul>
+    </div>
+    <div>
+      <div style="font-family:'Orbitron',monospace;font-size:0.8rem;color:var(--violet);margin-bottom:1rem;letter-spacing:2px;">// ZONA DE COBERTURA</div>
+      <div class="cov-grid">
+        <div class="cov-item"><span class="cov-num">01</span><div><div class="cov-name">🏖️ Salina Cruz</div><div class="cov-sub">BASE PRINCIPAL</div></div></div>
+        <div class="cov-item"><span class="cov-num">02</span><div><div class="cov-name">🌵 Juchitán</div><div class="cov-sub">ZONA ACTIVA</div></div></div>
+        <div class="cov-item"><span class="cov-num">03</span><div><div class="cov-name">🏔️ Tehuantepec</div><div class="cov-sub">COBERTURA</div></div></div>
+        <div class="cov-item"><span class="cov-num">04</span><div><div class="cov-name">🌺 Oaxaca</div><div class="cov-sub">TODO EL ESTADO</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-section reveal" id="contacto">
+  <div style="font-family:'Share Tech Mono',monospace;font-size:0.8rem;color:var(--violet);letter-spacing:4px;margin-bottom:1rem;">◈ INICIAR CONEXIÓN ◈</div>
+  <div class="cta-title">¿LISTO PARA OPERAR? ⚡</div>
+  <div class="cta-sub">▸ Contáctame · Resultados desde el primer día ◂</div>
+  <a href="tel:5527238980" class="cta-phone" style="font-size:1.5rem;">📞 55 2723 8980</a>
+  <br>
+  <a href="mailto:demitry001@gmail.com" class="cta-phone" style="font-size:1rem;margin-top:0.8rem;border-color:var(--green);color:var(--green);text-shadow:0 0 10px var(--green);box-shadow:0 0 20px rgba(57,255,20,0.3);">✉️ demitry001@gmail.com</a>
+  <div style="margin-top:2.5rem;font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:rgba(0,245,255,0.25);letter-spacing:4px;">
+    BIO-NEXUS 67 // SALINA CRUZ // OAXACA // ISTMO GRID
+  </div>
+</section>
+
+<!-- ─── FLOATING WINDOWS ─── -->
+
+<!-- CONTACT WIN -->
+<div class="float-win" id="win-contact" style="top:80px;left:20px;width:270px;">
+  <div class="win-bar" id="win-contact-bar">
+    <span class="win-title">▸ CONTACTO</span>
+    <div class="win-btns">
+      <button class="win-btn close" onclick="closeWin('win-contact')"></button>
+      <button class="win-btn min"></button>
+      <button class="win-btn max"></button>
+    </div>
+  </div>
+  <div class="win-body">
+    <div style="display:flex;align-items:center;margin-bottom:0.8rem;"><span class="pulse-dot"></span><span style="font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:var(--green);">ONLINE</span></div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:0.8rem;color:var(--cyan);margin-bottom:0.4rem;">📞 55 2723 8980</div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:rgba(0,245,255,0.5);margin-bottom:0.8rem;">demitry001@gmail.com</div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:var(--violet);">📍 Salina Cruz, Oaxaca</div>
+    <div class="accent-bar" style="margin-top:0.8rem;"></div>
+  </div>
+</div>
+
+<!-- STATUS WIN -->
+<div class="float-win" id="win-status" style="top:260px;left:20px;width:270px;">
+  <div class="win-bar" id="win-status-bar">
+    <span class="win-title">▸ STATUS SYS</span>
+    <div class="win-btns">
+      <button class="win-btn close" onclick="closeWin('win-status')"></button>
+      <button class="win-btn min"></button>
+      <button class="win-btn max"></button>
+    </div>
+  </div>
+  <div class="win-body">
+    <div style="margin-bottom:0.6rem;">
+      <div style="display:flex;justify-content:space-between;font-family:'Share Tech Mono',monospace;font-size:0.75rem;margin-bottom:0.3rem;"><span style="color:var(--cyan);">DISPONIBILIDAD</span><span style="color:var(--green);">ACTIVO</span></div>
+      <div style="height:4px;background:rgba(255,255,255,0.05);"><div style="height:100%;width:100%;background:linear-gradient(90deg,var(--green),var(--cyan));box-shadow:0 0 8px var(--green);"></div></div>
+    </div>
+    <div style="margin-bottom:0.6rem;">
+      <div style="display:flex;justify-content:space-between;font-family:'Share Tech Mono',monospace;font-size:0.75rem;margin-bottom:0.3rem;"><span style="color:var(--cyan);">EXPERIENCIA</span><span style="color:var(--cyan);">+10 AÑOS</span></div>
+      <div style="height:4px;background:rgba(255,255,255,0.05);"><div style="height:100%;width:92%;background:linear-gradient(90deg,var(--violet),var(--cyan));box-shadow:0 0 8px var(--cyan);"></div></div>
+    </div>
+    <div>
+      <div style="display:flex;justify-content:space-between;font-family:'Share Tech Mono',monospace;font-size:0.75rem;margin-bottom:0.3rem;"><span style="color:var(--cyan);">GARANTÍAS</span><span style="color:var(--green);">0% CAÍDA</span></div>
+      <div style="height:4px;background:rgba(255,255,255,0.05);"><div style="height:100%;width:100%;background:linear-gradient(90deg,var(--green),var(--green2));box-shadow:0 0 8px var(--green);"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS WIN -->
+<div class="float-win" id="win-skills" style="top:80px;right:20px;width:300px;">
+  <div class="win-bar" id="win-skills-bar">
+    <span class="win-title">▸ TOP SKILLS</span>
+    <div class="win-btns">
+      <button class="win-btn close" onclick="closeWin('win-skills')"></button>
+      <button class="win-btn min"></button>
+      <button class="win-btn max"></button>
+    </div>
+  </div>
+  <div class="win-body">
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+      <span class="tag c">Fibra Óptica</span>
+      <span class="tag g">HTML/Web</span>
+      <span class="tag v">Photoshop</span>
+      <span class="tag p">Ventas</span>
+      <span class="tag c">Linux</span>
+      <span class="tag g">SAP</span>
+      <span class="tag v">AutoCAD</span>
+      <span class="tag p">CCTV</span>
+      <span class="tag c">MySQL</span>
+      <span class="tag g">CorelDraw</span>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLS WIN -->
+<div class="float-win" id="win-tools" style="bottom:60px;right:20px;width:300px;">
+  <div class="win-bar" id="win-tools-bar">
+    <span class="win-title">▸ LOGROS ⚡</span>
+    <div class="win-btns">
+      <button class="win-btn close" onclick="closeWin('win-tools')"></button>
+      <button class="win-btn min"></button>
+      <button class="win-btn max"></button>
+    </div>
+  </div>
+  <div class="win-body">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:0.8rem;line-height:2;color:rgba(200,232,240,0.7);">
+      🏆 <span style="color:var(--yellow);">0%</span> tasa caída garantía Megacable<br>
+      ⚡ Jefe técnico Industrial Eléctrica Istmeña<br>
+      📚 Ventas puerta a puerta toda Oaxaca<br>
+      🌐 Admin páginas MercadoLibre Istmo<br>
+      🖥️ Desarrollo web cualquier SO<br>
+      🎨 Diseño gráfico y publicidad pro
+    </div>
+  </div>
+</div>
+
+<!-- TASKBAR -->
+<div class="taskbar">
+  <span class="tb-label">BIO-NEXUS 67</span>
+  <button class="tb-btn open" onclick="toggleWin('win-contact')">📞 CONTACTO</button>
+  <button class="tb-btn open" onclick="toggleWin('win-status')">📊 STATUS</button>
+  <button class="tb-btn open" onclick="toggleWin('win-skills')">🛠 SKILLS</button>
+  <button class="tb-btn open" onclick="toggleWin('win-tools')">🏆 LOGROS</button>
+  <div class="tb-clock" id="clock">00:00:00</div>
+</div>
+
+<script>
+// ── PARTICLES ──
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+function resize(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+
+const pts = Array.from({length:120},()=>({
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  r:Math.random()*1.2+0.2,
+  vx:(Math.random()-0.5)*0.4,
+  vy:(Math.random()-0.5)*0.4,
+  a:Math.random()*Math.PI*2,
+  color:['#00f5ff','#39ff14','#bf00ff','#ff007a'][Math.floor(Math.random()*4)]
+}));
+
+function drawParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pts.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy; p.a+=0.008;
+    if(p.x<0||p.x>canvas.width) p.vx*=-1;
+    if(p.y<0||p.y>canvas.height) p.vy*=-1;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=p.color.replace(')',`,${0.3+0.3*Math.sin(p.a)})`).replace('rgb','rgba').replace('#00f5ff',`rgba(0,245,255,${0.3+0.3*Math.sin(p.a)})`).replace('#39ff14',`rgba(57,255,20,${0.25+0.25*Math.sin(p.a)})`).replace('#bf00ff',`rgba(191,0,255,${0.2+0.2*Math.sin(p.a)})`).replace('#ff007a',`rgba(255,0,122,${0.2+0.2*Math.sin(p.a)})`);
+    // simpler:
+    const alpha = 0.2+0.3*Math.sin(p.a);
+    if(p.color==='#00f5ff') ctx.fillStyle=`rgba(0,245,255,${alpha})`;
+    else if(p.color==='#39ff14') ctx.fillStyle=`rgba(57,255,20,${alpha})`;
+    else if(p.color==='#bf00ff') ctx.fillStyle=`rgba(191,0,255,${alpha})`;
+    else ctx.fillStyle=`rgba(255,0,122,${alpha})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// ── SCROLL REVEAL ──
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── SKILL BARS ──
+const skillObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.skill-fill').forEach(bar=>{
+        bar.style.width = bar.dataset.pct + '%';
+      });
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.panel').forEach(p=>skillObs.observe(p));
+
+// ── PROGRESS BAR ──
+const pb = document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{
+  const st = window.scrollY;
+  const dh = document.documentElement.scrollHeight - window.innerHeight;
+  pb.style.width = (st/dh*100)+'%';
+});
+
+// ── CLOCK ──
+function updateClock(){
+  const now = new Date();
+  const h=String(now.getHours()).padStart(2,'0');
+  const m=String(now.getMinutes()).padStart(2,'0');
+  const s=String(now.getSeconds()).padStart(2,'0');
+  document.getElementById('clock').textContent=`${h}:${m}:${s}`;
+}
+setInterval(updateClock,1000); updateClock();
+
+// ── FLOATING WINDOWS ──
+function toggleWin(id){
+  const w=document.getElementById(id);
+  w.classList.toggle('active');
+}
+function closeWin(id){
+  document.getElementById(id).classList.remove('active');
+}
+
+// open all on load
+['win-contact','win-status','win-skills','win-tools'].forEach(id=>{
+  document.getElementById(id).classList.add('active');
+});
+
+// ── DRAGGABLE WINDOWS ──
+document.querySelectorAll('.win-bar').forEach(bar=>{
+  const win = bar.parentElement;
+  let dragging=false, ox=0, oy=0;
+  bar.addEventListener('mousedown',e=>{
+    dragging=true;
+    ox=e.clientX-win.offsetLeft;
+    oy=e.clientY-win.offsetTop;
+    win.style.zIndex=600;
+  });
+  document.addEventListener('mousemove',e=>{
+    if(!dragging)return;
+    win.style.left=(e.clientX-ox)+'px';
+    win.style.top=(e.clientY-oy)+'px';
+    win.style.right='auto';
+    win.style.bottom='auto';
+  });
+  document.addEventListener('mouseup',()=>dragging=false);
+});
+
+// ── CUSTOM CURSOR TRAIL ──
+document.addEventListener('mousemove',e=>{
+  const dot=document.createElement('div');
+  dot.style.cssText=`position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:4px;height:4px;background:rgba(0,245,255,0.6);border-radius:50%;pointer-events:none;z-index:9997;transition:opacity 0.4s;`;
+  document.body.appendChild(dot);
+  setTimeout(()=>dot.style.opacity='0',50);
+  setTimeout(()=>dot.remove(),500);
+});
+</script>
+</body>
+</html>
